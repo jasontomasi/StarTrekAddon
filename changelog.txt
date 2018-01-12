@@ -1,17 +1,6 @@
-
-Version 1.0 (19-05-2015)
------------------------------------------------
--Added Star Trek Type 11 Shuttle
--Added Star Trek Type 6 Shuttle
--Added Star Trek Type 9 Shuttle
--Added Transporter
--Added Star Trek Tab
----Drydock Prototype (May be unstable)
--Added Player Weapons
----Phaser
----Phaser Riffle
----Compression Phaser
----Tricorder
-
-
-
+January 2017
+- (realism) Changed teleporter's visual effect to match the TV series
+- (realism) Added checks for entity angle, both prior to and after teleportation, to align the visual effect with the object being teleported
+- (functionality) Changed wiremod input names
+- (functionality) Improved support for teleportation of SENTs
+_ (functionality) Improved support for linux servers (changed capitalization of all files)
