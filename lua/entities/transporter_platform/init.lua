@@ -62,11 +62,12 @@ end
 function ENT:Beam()
 	if  IsValid(self.Target)  and util.IsInWorld(self.Destination) and  self.BeamInProgress == 0 and not self.Target:IsWorld() then
 		local BeamObj = self.Target
-				ObjPose = BeamObj:GetAngles()
+				ObjPoseBefore = BeamObj:GetAngles()
 				ObjPreWhere = BeamObj:GetPos()
 				ObjPhysical	= BeamObj:GetPhysicsObject()
 				print("DEBUG_FROM: ", ObjPreWhere)
 				print("DEBUG_GOTO: ", self.Destination)
+				print("DEBUG_ANG1: ", ObjPoseBefore)
 				self.BeamInProgress = 1
 				local Dest = self.Destination
 					if BeamObj:IsPlayer() then
@@ -79,17 +80,20 @@ function ENT:Beam()
 					BeamObj:EmitSound("voyager_transporter.mp3")
 					BeamObj:SetCollisionGroup(COLLISION_GROUP_PUSHAWAY)
 
-					local fx = EffectData()
-						fx:SetEntity(BeamObj)
-						fx:SetOrigin(BeamObj:GetPos())
-						util.Effect("transporterbeamout",fx, true, true );
+					local fx1 = EffectData()
+						fx1:SetEntity(BeamObj)
+						fx1:SetAngles(ObjPoseBefore)
+						fx1:SetOrigin(BeamObj:GetPos())
+						util.Effect("transporterbeamout",fx1, true, true );
 						timer.Simple(3.5,function()
 							BeamObj:SetPos(self.Destination)
-							--BeamObj:SetAngles(CharacterPose)
+							--BeamObj:SetAngles(ObjPostAfter)
 							BeamObj:EmitSound("voyager_transporter.mp3")
 
 							local fx2 = EffectData()
+								ObjPoseAfter = BeamObj:GetAngles()
 								fx2:SetEntity(BeamObj)
+								fx2:SetAngles(ObjPoseAfter)
 								fx2:SetOrigin(BeamObj:GetPos())
 								util.Effect("transporterbeamin",fx2, true, true );
 									timer.Simple(3.2,function()
@@ -98,14 +102,14 @@ function ENT:Beam()
 										if BeamObj:IsPlayer() then
 											BeamObj:SetMoveType(2)
 											// Can't get this to work, even when used 'in pairs', it moves all BeamObjs to the same angle as the first in table
-											--BeamObj:SetAngles(CharacterPose)
+											--BeamObj:SetAngles(ObjPostAfter)
 										elseif BeamObj:IsScripted() and ObjPhysical:IsValid() then
 											// Can't get this to work, even when used 'in pairs', it moves all BeamObjs to the same angle as the first in table
-											--BeamObj:SetAngles(CharacterPose)
+											--BeamObj:SetAngles(ObjPostAfter)
 											BeamObj:GetPhysicsObject():EnableMotion(true)
 										elseif BeamObj:GetClass() == "prop_physics" then
 											// Can't get this to work, even when used 'in pairs', it moves all BeamObjs to the same angle as the first in table
-											--BeamObj:SetAngles(CharacterPose)
+											--BeamObj:SetAngles(ObjPostAfter)
 											BeamObj:GetPhysicsObject():EnableMotion(true)
 										end
 									end);
