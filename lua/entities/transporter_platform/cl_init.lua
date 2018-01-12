@@ -6,7 +6,7 @@ include('shared.lua')
 		//self:DrawEntityOutline( 0.0 ) // Draw an outline of 1 world unit.
 		self.Entity:DrawModel() // Draw the model.
 
-		if ( LocalPlayer():GetEyeTrace().Entity == self.Entity && EyePos():Distance( self.Entity:GetPos() ) < 512 ) then
+		if ( LocalPlayer():GetEyeTrace().Entity == self.Entity && EyePos():Distance( self.Entity:GetPos() ) < 1024 ) then
 			//local pos = self.Entity:GetPos()
 			//local TransporterPos = self.Entity:GetPos()
 			//self.Origin = Vector( math.Round(TransporterPos.x*1000)/1000, math.Round(TransporterPos.y*1000)/1000, (math.Round(TransporterPos.z*1000)/1000)+18.3 )
