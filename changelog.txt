@@ -1,5 +1,5 @@
 January 2017
-- (realism) Changed teleporter's visual effect to match the TV series
+- (realism) Changed visual teleportation effect to have closer resemblance to the TV series
 - (realism) Added checks for entity angle, both prior to and after teleportation, to align the visual effect with the object being teleported
 - (functionality) Changed wiremod input names
 - (functionality) Improved support for teleportation of SENTs
