@@ -71,7 +71,7 @@ function ENT:Beam()
 				self.BeamInProgress = 1
 				local Dest = self.Destination
 					if BeamObj:IsPlayer() then
-						BeamObj:SetMoveType(8)
+						BeamObj:SetMoveType(0)
 					elseif BeamObj:IsScripted() and ObjPhysical:IsValid() then
 						BeamObj:GetPhysicsObject():EnableMotion(false)
 					elseif BeamObj:GetClass() == "prop_physics" then
@@ -84,7 +84,7 @@ function ENT:Beam()
 						fx1:SetEntity(BeamObj)
 						fx1:SetAngles(ObjPoseBefore)
 						fx1:SetOrigin(BeamObj:GetPos())
-						util.Effect("transporterbeamout",fx1, true, true );
+						util.Effect("transporterbeamout",fx1, true, true);
 						timer.Simple(3.5,function()
 							BeamObj:SetPos(self.Destination)
 							--BeamObj:SetAngles(ObjPostAfter)
@@ -95,8 +95,8 @@ function ENT:Beam()
 								fx2:SetEntity(BeamObj)
 								fx2:SetAngles(ObjPoseAfter)
 								fx2:SetOrigin(BeamObj:GetPos())
-								util.Effect("transporterbeamin",fx2, true, true );
-									timer.Simple(3.2,function()
+								util.Effect("transporterbeamin",fx2, true, true);
+									timer.Simple(3.5,function()
 											BeamObj:SetCollisionGroup(COLLISION_GROUP_NONE)
 											self.BeamInProgress = 0
 										if BeamObj:IsPlayer() then
